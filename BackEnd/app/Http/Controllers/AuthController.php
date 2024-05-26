@@ -110,6 +110,21 @@ class AuthController extends Controller
             ], 500);
         }
     }
+    public function getUserOrders(Request $request, $userId)
+    {
+        try {
+            $orders = Order::where('user_id', $userId)->with('orderDetails')->get();
+            return response()->json([
+                'status' => true,
+                'orders' => $orders
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
     public function updatePassword(Request $request)
     {
         $request->validate([
@@ -122,46 +137,6 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Password updated successfully']);
     }
-
-    public function store(Request $request)
-    {
-        try {
-            $request->validate([
-                'city' => 'required|string',
-                'adress' => 'required|string',
-                'suiteAderess' => 'required|string',
-                'total' => 'required|numeric',
-                'dateCm' => 'required|date',
-                'user_id' => 'required|integer',
-                'carts' => 'required|array'
-            ]);
-
-            $order = Order::create([
-                'city' => $request->city,
-                'adress' => $request->adress,
-                'suiteAderess' => $request->suiteAderess,
-                'total' => $request->total,
-                'statue' => 0,
-                'dateCm' => $request->dateCm,
-                'user_id' => $request->user_id
-            ]);
-
-            foreach ($request->carts as $cart) {
-                Order_detail::create([
-                    'productImage' => $cart['ProductImage'],
-                    'quantitieCm' => $cart['ProductQuantity'],
-                    'price' => $cart['ProductPrice'],
-                    'order_id' => $order->id
-                ]);
-            }
-
-            return response()->json(['message' => 'Order created successfully'], 201);
-        } catch (\Exception $e) {
-            \Log::error('Error creating order: ' . $e->getMessage());
-            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
-        }
-    }
-
 
 
 }

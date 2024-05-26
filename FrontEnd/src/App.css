@@ -1286,4 +1286,22 @@ footer .payment img {
   margin-top: 20px;
   font-size: 19px;
 }
+span.statue{
+  margin: 3px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 12px; 
+  color: var(--color-bf4800);
+}
+.ongoing {
+  background-color: #ff9f43; 
+  color: #fff !important;
+}
+
+.confirmed {
+  background-color: green; 
+  color: #fff !important;
+
+}
+
 /*Dachbord ends */

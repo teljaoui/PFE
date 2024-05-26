@@ -13,7 +13,6 @@ Route::get('/categorielist' , [ApiController::class , 'categories']);
 Route::post('/register', [AuthController::class,'createUser']);
 Route::post('/login', [AuthController::class,'loginUser']);
 Route::get('/dashboard', [AuthController::class, 'userInfo'])->middleware('auth:sanctum');
+Route::get('/user/{userId}/orders', [AuthController::class, 'getUserOrders']);
 Route::middleware('auth:sanctum')->put('/user/password', [AuthController::class, 'updatePassword']);
-
-Route::post('/orders', [AuthController::class, 'store']);
-
+Route::post('/orders', [ApiController::class, 'store']);

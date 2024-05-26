@@ -3,39 +3,68 @@ import axios from 'axios';
 import Meta from '../components/Meta';
 import { useNavigate } from 'react-router-dom';
 import { SlLogout } from "react-icons/sl";
+import { FaEye } from "react-icons/fa6";
+import { IoMdClose } from "react-icons/io";
+
+
 
 const Dashboard = () => {
     const [user, setUser] = useState(null);
+    const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPasswordForm, setShowPasswordForm] = useState(false);
     const [showPasswordButton, setShowPasswordButton] = useState(true);
+    const [selectedOrderId, setSelectedOrderId] = useState(null);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/user', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
 
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            if (response.data) {
                 setUser(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                setLoading(false);
-                navigate('/login');
-
+            } else {
+                throw new Error('User data not found');
             }
-        };
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            setLoading(false);
+            navigate('/login');
+        }
+    };
 
+    useEffect(() => {
         fetchUserData();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            getOrder(user.id);
+        }
+    }, [user]);
+
+    const getOrder = async (userId) => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/user/${userId}/orders`);
+            setOrders(response.data.orders);
+
+        } catch (error) {
+            console.error('Error fetching user orders:', error);
+            setLoading(false);
+        }
+
+    };
+
     const showform = () => {
         setShowPasswordForm(true)
         setShowPasswordButton(false)
@@ -163,13 +192,43 @@ const Dashboard = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>500</td>
-                                                        <td>2015-02-11</td>
-                                                        <td>complet</td>
-                                                        <td>Détails</td>
-                                                    </tr>
+                                                    {orders.map(order => (
+                                                        <React.Fragment key={order.id}>
+                                                            <tr>
+                                                                <td>{order.id}</td>
+                                                                <td>{order.total}</td>
+                                                                <td>{order.dateCm}</td>
+                                                                <td>
+                                                                    <span className={order.statue === 0 ? "statue ongoing" : "statue confirmed"}>
+                                                                        {order.statue === 0 ? "En cours" : "confirmed"}
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <span className="statue" onClick={() => setSelectedOrderId(selectedOrderId === order.id ? null : order.id)}>
+                                                                        {selectedOrderId === order.id ? <><IoMdClose /> Close</> : <><FaEye />  Details</>}
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                            {selectedOrderId === order.id && (
+                                                                <>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantities</th>
+                                                                    </tr>
+                                                                    {order.order_details.map((detail, index) => (
+                                                                        <tr key={index}>
+                                                                            <td><img src={`http://127.0.0.1:8000/${detail.productImage}`} alt="" width={50}/>  </td>
+                                                                            <td>{detail.price}</td>
+                                                                            <td>{detail.quantitieCm}</td>
+                                                                        </tr>
+                                                                    ))}
+                                                                </>
+
+                                                            )}
+                                                        </React.Fragment>
+                                                    ))}
+
                                                 </tbody>
                                             </table>
                                         </div>

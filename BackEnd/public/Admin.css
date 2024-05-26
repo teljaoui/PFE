@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root {
+    --color-131921: #131921;
+    --color-3b4149: #3b4149;
+    --color-fedb69: #fedb69;
+    --color-232f3e: #232f3e;
+    --color-bf4800: #bf4800;
+    --color-f5f5f7: #f5f5f7;
+    --color-ededed: #ededed;
+    --color-1c1c1b: #1c1c1b;
+    --color-777777: #777777;
+    --color-28c76f: #28c76f;
+    --color-1b2850: #1b2850;
+    --color-00cfe8: #00cfe8;
+    --color-ff9f43: #ff9f43;
+}
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    background-color: var(--color-232f3e);
+    color: white;
+    font-size: 12px;
+    padding: 10px 24px;
+    border-radius: 28px;
+    transition: 0.5s ease;
+    border: 0px;
+}
+
+.button:hover {
+    background-color: var(--color-fedb69);
+    color: var(--color-131921);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+span.text-danger{
+    font-size: 12px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: var(--color-ededed);
+}
+
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    background-color: var(--color-1b2850);
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: #FFF;
+}
+
+.sidebar-logo {
+    margin: auto 0;
+}
+
+.sidebar-logo a {
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: #FFF;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i,
+.sidebar-link svg {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-item {
+    position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: #0e2238;
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+
+/*Home page*/
+.content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.content .card {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.content .card:hover svg {
+    transform: scale(1.2);
+}
+
+.content .card svg {
+    font-size: 40px;
+    transition: transform 0.5s ease;
+}
+
+.content .card h4 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.content .card h5 {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.content .card:first-child {
+    background-color: var(--color-ff9f43);
+    color: #fff;
+}
+
+.content .card:nth-child(2) {
+    background-color: var(--color-28c76f);
+    color: #fff;
+}
+
+.content .card:nth-child(3) {
+    background-color: var(--color-1b2850);
+    color: #fff;
+}
+
+.content .card:nth-child(4) {
+    background-color: var(--color-00cfe8);
+    color: #fff;
+}
+
+.content-bottom {
+    display: flex;
+    margin-top: 50px;
+}
+
+.title {
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: var(--color-232f3e);
+}
+
+.title-page {
+    font-size: 28px;
+    font-weight: 550;
+    color: var(--color-1b2850);
+}
+
+.content-bottom .orders,
+.list-fournisseur {
+    width: 60%;
+    margin: 0.6%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.content-bottom .special-product,
+.ajouter-fournisseur {
+    width: 45%;
+    margin: 0.6%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+table .statu  span {
+    background-color: green;
+    margin: 3px;
+    padding: 2px 5px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.statueCm{
+    background-color: var(--color-ff9f43);
+    margin: 3px;
+    padding: 2px 5px;
+    color: #fff !important;
+    border-radius: 5px;
+    font-size: 12px;    
+}
+
+.orders table a , .special-product table a{
+    color: var(--color-ff9f43);
+}
+.orders table div a:nth-child(1){
+    color: var(--color-28c76f);
+    margin-right: 10px;
+    font-size: 20px;
+}
+.orders table div a:nth-child(2){
+    color: var(--color-1b2850);
+    font-size: 20px;
+}
+.action_users{
+    display: flex;
+    flex-direction: column;
+}
+
+.special-product table .productimgname {
+    display: flex;
+}
+
+.special-product table td {
+    padding: 10px;
+}
+.special-product .price{
+    text-decoration: line-through;
+    margin-right: 10px  ;
+}
+.special-product .offerPrice {
+    color: green;
+    font-weight: 500;
+}
+table a {
+    color: var(--color-131921);
+}
+table .lien{
+    color: var(--color-1b2850);
+}
+table .productimgname img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+table .productimgname .specialImg{
+    width: 54px !important;
+    height: 54px !important;
+}
+
+table a {
+    color: var(--color-28c76f);
+}
+
+.proudct-list table .action {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px 0px;
+}
+
+.table-responsive {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+/*Home page ends*/
+
+
+/*Products*/
+.submit {
+    background-color: var(--color-28c76f);
+    color: white;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    border: 0px;
+}
+
+.submit:hover {
+    background-color: #027a32;
+
+}
+.encoure{
+    background-color: var(--color-ff9f43);
+    color: white;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    border: 0px;
+}
+.encoure:hover{
+    background-color: var(--color-bf4800);
+}
+
+
+.product-head {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 5%;
+    margin-top: 50px;
+}
+
+.proudct-list {
+    margin-top: 50px;
+    margin-inline: auto;
+    width: 90%;
+}
+
+
+.offer {
+    border: 0px;
+    border-radius: 5px;
+    padding: 3px 7px;
+    color: #fff;
+}
+
+
+
+/*Products ends*/
+
+/*Add Product*/
+.add-product {
+    background-color: #fff;
+    margin-inline: 8%;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.add-product .form-group {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.add-product h6 {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--color-777777);
+}
+ .searchresult h6 {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-777777);
+}
+
+.add-product h5 {
+    font-size: 16px;
+    padding: 30px 0px;
+    font-weight: 550;
+    color: var(--color-232f3e);
+}
+
+
+.form-control,
+.form-select {
+    box-shadow: none !important;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #212b36;
+    font-weight: 500;
+    font-size: 14px;
+    display: block;
+}
+
+.form-group input {
+    border: 1px solid rgba(145, 158, 171, .32);
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-131921);
+    padding: 10px 15px;
+    transition: 0.3s ease;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    border: 1px solid rgba(145, 158, 171, .32);
+    height: 200px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-131921);
+    padding: 10px 15px;
+    transition: 0.3s ease;
+    border-radius: 5px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-ff9f43);
+}
+
+.form-group select {
+    border: 1px solid rgba(145, 158, 171, .32);
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-131921);
+    padding: 10px 15px;
+    transition: 0.3s ease;
+    border-radius: 5px;
+}
+
+.form-group select:focus {
+    border-color: var(--color-ff9f43);
+}
+option:hover{
+    background-color: var(--color-ff9f43)  !important;
+}
+
+/*Add Product ends*/
+
+
+
+/*user-detail*/
+
+.user-detail{
+    width: 40%;
+    padding: 20px;
+    border-radius: 5px;
+}
+.user-detail li a{
+    font-size: 18px;
+    padding-bottom: 5px;
+    margin-right: 10px;
+}
+.user-detail li a:nth-child(1){
+    color: var(--color-bf4800);
+}
+.user-detail li a:nth-child(2){
+    color: var(--color-1b2850);
+}
+.user-detail li {
+    display: flex;
+    gap: 10px;
+}
+.user-detail li span{
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-232f3e);
+}
+.user-detail li p{
+    color: var(--color-777777);
+}
+.user-detail .statu {
+    color: #fff;
+}
+.list-commande{
+    width: 60%;
+    padding: 20px;
+    border-radius: 5px;
+}
+.list-commande .Total{
+    display: flex;
+    gap: 15px;
+}
+.list-commande .Total span{
+    font-weight: 800;
+    font-size: 25px;
+    color: var(--color-232f3e);
+}
+.list-commande .Total p{
+    font-size: 25px;
+    color: green;
+    font-weight:500;
+}
+/*user-detail end*/
+
+

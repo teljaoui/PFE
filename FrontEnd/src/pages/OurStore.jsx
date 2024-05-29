@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import BreadCrumb from '../components/BreadCrumb';
 import Meta from '../components/Meta';
 import ReactStars from "react-rating-stars-component";
@@ -7,22 +7,14 @@ import ProductCard from '../components/ProductCard';
 import { HiMiniBars4 } from "react-icons/hi2";
 import { FaBars } from "react-icons/fa";
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
-import { ProductContext } from '../context/ProductContext';
 
-export default function OurStore() {
-    const Products = useContext(ProductContext);
-    const [Categories, setCategories] = useState([]);
-    useEffect(() => {
-      axios.get('http://127.0.0.1:8000/api/categorielist').then
-        ((res) => { setCategories(res.data) })
-    }, []);
+export default function OurStore({ Products, Categories }) {
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
-    }, []);
+    });
     const [clickedButton, setClickedButton] = useState(3);
 
     const handleClick = (buttonNumber) => {
@@ -155,7 +147,7 @@ export default function OurStore() {
                                 </div>
                             </div>
                             <div className="products-list d-flex flex-wrap pb-5">
-                                <ProductCard Products={Products}  clickedButton={clickedButton} categorie={categorie} priceFrom={priceFrom} priceTo={priceTo} />
+                                <ProductCard Products={Products} clickedButton={clickedButton} categorie={categorie} priceFrom={priceFrom} priceTo={priceTo} />
                             </div>
                         </div>
                     </div>

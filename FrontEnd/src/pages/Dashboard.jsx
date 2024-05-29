@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { SlLogout } from "react-icons/sl";
 import { FaEye } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -17,8 +19,6 @@ const Dashboard = () => {
     const [showPasswordForm, setShowPasswordForm] = useState(false);
     const [showPasswordButton, setShowPasswordButton] = useState(true);
     const [selectedOrderId, setSelectedOrderId] = useState(null);
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
 
@@ -75,32 +75,55 @@ const Dashboard = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
-            setError('Passwords do not match');
-            return;
-        }
+        if (window.confirm('Are you sure you want to update password')) {
+            if (password !== confirmPassword) {
+                toast.error("Passwords do not match", {
+                    position: "top-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                return;
+            }
 
-        try {
-            const response = await axios.put('http://127.0.0.1:8000/api/user/password',
-                {
-                    password,
-                    password_confirmation: confirmPassword
-                },
-                {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+            try {
+                const response = await axios.put('http://127.0.0.1:8000/api/user/password',
+                    {
+                        password,
+                        password_confirmation: confirmPassword
+                    },
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
                     }
-                }
-            );
-            setSuccess('Password updated successfully');
-            setError('');
-            setPassword('');
-            setConfirmPassword('');
-            closeform();
-        } catch (error) {
-            setError('Error updating password');
-            setSuccess('');
-            console.error('Error updating password:', error);
+                );
+                toast.success("Password updated successfully", {
+                    position: "top-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setPassword('');
+                setConfirmPassword('');
+                closeform();
+            } catch (error) {
+                toast.error('Error updating password', {
+                    position: "top-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         }
     };
 
@@ -112,7 +135,7 @@ const Dashboard = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div class="loader"></div>;
     }
 
     return (
@@ -122,8 +145,6 @@ const Dashboard = () => {
                     <Meta title={user.name + ' ' + user.lastName} />
                     <div className="main-product-wrapper py-5 home-wrapper-2">
                         <div className="container-xxl">
-                            {error && <div className="alert alert-danger">{error}</div>}
-                            {success && <div className="alert alert-success">{success}</div>}
                             <div className="row">
                                 <div className="col-4">
                                     <div className="main-product-details">
@@ -175,6 +196,7 @@ const Dashboard = () => {
                                             <SlLogout />
                                             logout
                                         </span>
+                                        <ToastContainer className="notif" />
                                     </div>
                                 </div>
                                 <div className="col-8">
@@ -199,8 +221,8 @@ const Dashboard = () => {
                                                                 <td>{order.total}</td>
                                                                 <td>{order.dateCm}</td>
                                                                 <td>
-                                                                    <span className={order.statue === 0 ? "statue ongoing" : "statue confirmed"}>
-                                                                        {order.statue === 0 ? "En cours" : "confirmed"}
+                                                                    <span className={order.statue === 0 ? "statue ongoing" : order.statue === 1 ? "statue confirmed" : "statue delivered"}>
+                                                                        {order.statue === 0 ? "En cours" : order.statue === 1 ? "confirmed" : "Livrée"}
                                                                     </span>
                                                                 </td>
                                                                 <td>
@@ -218,7 +240,7 @@ const Dashboard = () => {
                                                                     </tr>
                                                                     {order.order_details.map((detail, index) => (
                                                                         <tr key={index}>
-                                                                            <td><img src={`http://127.0.0.1:8000/${detail.productImage}`} alt="" width={50}/>  </td>
+                                                                            <td><img src={`http://127.0.0.1:8000/${detail.productImage}`} alt="" width={50} />  </td>
                                                                             <td>{detail.price}</td>
                                                                             <td>{detail.quantitieCm}</td>
                                                                         </tr>

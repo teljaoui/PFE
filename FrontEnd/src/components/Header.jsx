@@ -6,15 +6,11 @@ import { searchAction } from '../config/Action';
 import axios from 'axios';
 
 
-export const Header = () => {
+export const Header = ({Categories}) => {
   const location = useLocation()
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
-  const [Categories, setCategories] = useState([]);
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/categorielist').then
-      ((res) => { setCategories(res.data) })
-  }, []);
+
   const carts = useSelector((state) => state.carts);
 
   const calculateTotal = () => {

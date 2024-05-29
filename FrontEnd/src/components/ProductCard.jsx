@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Products}) => {
-    
     const location = useLocation()
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.carts);

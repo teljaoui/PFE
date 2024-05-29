@@ -15,7 +15,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
 
-export default function FeaturedCollection({ currentProductId , Products }) {
+export default function FeaturedCollection({ currentProductId, Products }) {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const dispatch = useDispatch();
@@ -23,9 +23,10 @@ export default function FeaturedCollection({ currentProductId , Products }) {
     const wishlistItems = useSelector(state => state.wishlist);
     const [ProductQuantity, setProductQuantity] = useState(1);
     const [Product, setProduct] = useState([]);
+
     useEffect(() => {
         setProduct(getRandomProducts());
-    }, []);
+    }, [currentProductId, Products]);
 
     const getRandomProducts = () => {
         const productsCopy = Products.filter(product => product.id !== currentProductId);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import Marquee from 'react-fast-marquee';
 import SpecialProduct from '../components/SpecialProduct';
@@ -8,20 +8,10 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import FeaturedCollection from '../components/FeaturedCollection';
 import { ToastContainer } from 'react-toastify';
-import { useEffect , useContext } from 'react';
-import { ProductContext } from '../context/ProductContext';
-import axios from 'axios';
+import { useEffect  } from 'react';
 
 
-
-export const Home = () => {
-  const Products = useContext(ProductContext);
-  const [Categories, setCategories] = useState([]);
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/categorielist').then
-      ((res) => { setCategories(res.data) })
-  }, []);
-
+export const Home = ({Products , Categories}) => {
   useEffect(() => {
     window.scrollTo({
       top: 0,

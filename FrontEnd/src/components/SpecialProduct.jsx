@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartAction } from '../config/Action';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ProductContext } from '../context/ProductContext';
 
 
 const SpecialProduct = ({Products}) => {
@@ -32,7 +31,7 @@ const SpecialProduct = ({Products}) => {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [Products]);
 
     const calculateTimeRemaining = (endDate) => {
         const totalSeconds = Math.floor((endDate - new Date()) / 1000);

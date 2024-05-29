@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import BreadCrumb from '../components/BreadCrumb';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { deleteAllAction } from '../config/Action';
+import emailjs from '@emailjs/browser';
 
 
 export default function Checkout() {
@@ -20,12 +21,10 @@ export default function Checkout() {
     const [dateCm, setdateCm] = useState(currentDate)
     const [user_id, setUserId] = useState(null);
     const dispatch = useDispatch();
-
-
-
-
-
+    const form = useRef();
     const carts = useSelector((data) => data.carts);
+
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -75,6 +74,18 @@ export default function Checkout() {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 });
+                emailjs
+                    .sendForm('service_xmarvj6', 'template_2jyctrs', form.current, {
+                        publicKey: '-yADHJ8qBIDGIbIKm',
+                    })
+                    .then(
+                        () => {
+                            console.log('SUCCESS!');
+                        },
+                        (error) => {
+                            console.log('FAILED...', error.text);
+                        },
+                    );
                 alert('Order created successfully:', response.data);
                 dispatch(deleteAllAction())
                 navigate('/finalOrder')
@@ -112,13 +123,15 @@ export default function Checkout() {
                                 <p className="user-details">
                                     <span className="text-uppercase">{user.name}</span> <span className="text-uppercase"> {user.lastName}</span> ( {user.email} )
                                 </p>
-                                <form action="" className="d-flex flex-column gap-15 justify-content-between">
-
+                                <form  ref={form} onSubmit={handleSubmit} className="d-flex flex-column gap-15 justify-content-between">
+                                    <input type="hidden" name="name" value={user.name} />
+                                    <input type="hidden" name="email" value={user.email} />
+                                    <input type="hidden" name="phone" value={user.phone} />
                                     <div className="flex-grow-1">
-                                        <input type="text" placeholder="City" className="form-control" required value={city} onChange={(e) => setcity(e.target.value)} />
+                                        <input type="text" placeholder="City" name="city"  className="form-control" required value={city} onChange={(e) => setcity(e.target.value)} />
                                     </div>
                                     <div className="w-100">
-                                        <input type="text" placeholder="Adress" className="form-control" required value={adress} onChange={(e) => setadress(e.target.value)} />
+                                        <input type="text" placeholder="Adress" name="adress" className="form-control" required value={adress} onChange={(e) => setadress(e.target.value)} />
                                     </div>
                                     <div className="w-100">
                                         <input type="text" placeholder="Apartment, Suiten, etc" className="form-control" value={suiteAderess} onChange={(e) => setsuiteAderess(e.target.value)} required />
@@ -128,7 +141,7 @@ export default function Checkout() {
                                             <BiArrowBack />
                                             Return to Cart
                                         </Link>
-                                        <button type="submit" className="button" onClick={handleSubmit}>
+                                        <button type="submit" className="button">
                                             Continue to Shipping
                                         </button>
                                     </div>

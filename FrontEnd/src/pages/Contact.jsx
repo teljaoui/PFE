@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useRef, useState } from 'react';
 import Meta from '../components/Meta';
 import BreadCrumb from '../components/BreadCrumb';
 import { AiFillHome } from "react-icons/ai";
@@ -10,19 +10,65 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { BsTelegram } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   }, []);
+  const form = useRef();
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm('service_xmarvj6', 'template_77mts5g', form.current, {
+        publicKey: '-yADHJ8qBIDGIbIKm',
+      })
+      .then(
+        () => {
+          toast.success("Email Send successfully", {
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+          setEmail('');
+          setPhone('');
+          setName('');
+          setMessage('');
+        },
+        (error) => {
+          toast.error("error on Send Email", {
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+          console.log(error.text);
+        },
+      );
+  };
   return (
     <>
       <Meta title={"Contact Us"} />
       <BreadCrumb title="Contact Us" />
+      <ToastContainer className="notif" />
       <div className="contact-wrapper py-5 home-wrapper-2 ">
         <div className="container-xxl">
           <div className="row">
@@ -33,18 +79,18 @@ export const Contact = () => {
               <div className="contact-inner-wrapper d-flex justify-content-between">
                 <div>
                   <h3 className="conatct-title mb-4">Contact</h3>
-                  <form action="" className="d-flex flex-column gap-15">
+                  <form  ref={form} onSubmit={sendEmail} className="d-flex flex-column gap-15">
                     <div>
-                      <input type="text" className="form-control" placeholder="Name" required />
+                      <input type="text" className="form-control" name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
                     </div>
                     <div>
-                      <input type="email" className="form-control" placeholder="Email" required />
+                      <input type="email" className="form-control" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
                     </div>
                     <div>
-                      <input type="tel" className="form-control" placeholder="Mobile Number" required />
+                      <input type="tel" className="form-control" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Mobile Number" required />
                     </div>
                     <div>
-                      <textarea name="" id="" className="w-100 form-control" cols="30" rows="4" placeholder="Comments" required></textarea>
+                      <textarea id="" className="w-100 form-control" cols="30" value={message} onChange={(e) => setMessage(e.target.value)} name="message" rows="4" placeholder="Comments" required></textarea>
                     </div>
                     <div>
                       <button type="submit" className="button">Submit</button>

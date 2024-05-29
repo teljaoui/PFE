@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
@@ -6,13 +6,8 @@ import { FaInstagram } from "react-icons/fa6";
 import { BsLinkedin } from "react-icons/bs";
 import ScrollToTopButton from './ScrollToTopButton ';
 import { AiFillHome } from 'react-icons/ai';
-import axios from 'axios';
-export const Footer = () => {
-  const [Categories, setCategories] = useState([]);
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/categorielist').then
-      ((res) => { setCategories(res.data) })
-  }, []);
+
+export const Footer = ({Categories}) => {
   return (
     <>
       <ScrollToTopButton />

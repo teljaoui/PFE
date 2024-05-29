@@ -14,16 +14,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import FeaturedCollection from '../components/FeaturedCollection';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import axios from 'axios';
-const SingleProduct = () => {
-    const [Products, setProducts] = useState([]);
-    const [Product, setProduct] = useState(null);
-    const [ProductImage, setProductImage] = useState("");
+
+const SingleProduct = ({ Products }) => {
+    const { id } = useParams();
+    const Product = Products.find(p => p.id === parseInt(id));
+
+    const [ProductImage, setProductImage] = useState(Product ? Product.img : '');
     const [ProductQuantity, setProductQuantity] = useState(1);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    const [currentProductId, setCurrentProductId] = useState(0);
-    const { id } = useParams();
+    const [currentProductId, setCurrentProductId] = useState(Product ? Product.id : null);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -31,29 +32,12 @@ const SingleProduct = () => {
     const wishlistItems = useSelector(state => state.wishlist);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/productlist');
-                setProducts(response.data);
-                const product = response.data.find(p => p.id === parseInt(id));
-                if (product) {
-                    setProduct(product);
-                    setProductImage(product.img);
-                    setCurrentProductId(product.id);
-                }
-            } catch (error) {
-                console.error('Erreur lors de la récupération des produits :', error);
-            }
-        };
-        fetchProducts();
-    }, [id]);
-
-    useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
-    }, []);
+        setProductImage(Product.img)
+    }, [Product]);
 
     useEffect(() => {
         if (Product && Product.datefin) {
@@ -185,7 +169,7 @@ const SingleProduct = () => {
     };
 
     if (!Product) {
-        return <div>Loading...</div>;
+        return <div class="loader"></div>;
     }
     return (
         <>
@@ -402,7 +386,7 @@ const SingleProduct = () => {
             <section className="home-wrapper-2 py-5">
                 <div className="container-xxl">
                     <div className="row">
-                        <FeaturedCollection  Products={Products} currentProductId={currentProductId} />
+                        <FeaturedCollection Products={Products} currentProductId={currentProductId} />
                     </div>
                 </div>
             </section>

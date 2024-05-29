@@ -76,19 +76,25 @@
                             <li>
                                 <span>Commande Statue : </span>
                                 <p>
-                                    @if ($order->statue > 0)
+                                    @if ($order->statue == 1)
                                         <p class="statueCm">confirmed</p>
-                                    @else
+                                    @elseif ($order->statue == 0)
                                         <p class="statueCm">en coure</p>
+                                    @else
+                                        <p class="statueCm">Livrée</p>
                                     @endif
                                 </p>
                             </li>
                         </ul>
                     </div>
                     <div class="py-3">
-                        <a href="/confirme/{{ $order->id }}" class="submit">Confirme</a>
                         <a href="/encoure/{{ $order->id }}" class="encoure">En coure</a>
+                        <a href="/confirme/{{ $order->id }}" class="submit">Confirme</a>
                         <a href="/deleteOrder/{{ $order->id }}" class="btn btn-danger delete">Delete</a>
+                    </div>
+                    <div class="py-3">
+                        <a href="/delivered/{{ $order->id }}" class="delivered">Livrée</a>
+
                     </div>
                 </div>
                 <div class="list-commande">

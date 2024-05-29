@@ -21,9 +21,10 @@ class BackEnd extends Controller
         $products = Product::all()->count();
         $user = User::all();
         $orders = Order::where('statue', '<=', 0)->paginate(5);
+        $ordersCount = Order::where('statue', '<=', 0)->count();
         $specials = Product::where('offer', '>', 0)->where('datefin', '>', now())->paginate(5);
-        $orderenCoure = Order::where('statue', '>', 0)->count();
-        return view('Admin', compact('fournisseurs', 'products', 'specials', 'orders', 'user', 'orderenCoure'));
+        $orderenCoure = Order::where('statue', '=', 1)->count();
+        return view('Admin', compact('fournisseurs', 'products', 'specials', 'orders', 'user', 'orderenCoure', 'ordersCount'));
     }
     public function product()
     {
@@ -67,8 +68,13 @@ class BackEnd extends Controller
     }
     public function orders_confirme()
     {
-        $orders = Order::where('statue', '>', 0)->paginate(10);
+        $orders = Order::where('statue', '=', 1)->paginate(10);
         return view('orders_confirme', compact('orders'));
+    }
+    public function orders_delivered()
+    {
+        $orders = Order::where('statue', '>', 1)->paginate(10);
+        return view('orders_delivered', compact('orders'));
     }
     public function categorie_update($id)
     {
@@ -141,7 +147,6 @@ class BackEnd extends Controller
     public function categorie_delete($id)
     {
         $categorie = Categorie::find($id);
-        $categorie_image = $categorie->img;
 
         if (!$categorie) {
             return redirect('/categories')->with('error', 'Catégorie non trouvée.');
@@ -359,6 +364,20 @@ class BackEnd extends Controller
         return redirect('/product')->with('success', 'Product a été supprimée avec succès.');
     }
 
+    public function publicite($id)
+    {
+        $product = Product::find($id);
+
+        if ($product) {
+            $product->Adimg = null;
+            $product->Advertisement = 0;
+            $product->save();
+            return redirect('/product')->with('success', 'publicite est supprimé avec success');
+
+        } else {
+            return redirect('/product')->with('error', 'Product non trouvée.');
+        }
+    }
 
     public function confirme($id)
     {
@@ -375,6 +394,15 @@ class BackEnd extends Controller
         $order = Order::find($id);
         if ($order) {
             $order->statue = 0;
+            $order->save();
+        }
+        return redirect('/order_detail' . '/' . $id)->with('success', 'Commande Statue  a été modfié avec succès.');
+        ;
+    }
+    public function delivered($id){
+        $order = Order::find($id);
+        if ($order) {
+            $order->statue = 2;
             $order->save();
         }
         return redirect('/order_detail' . '/' . $id)->with('success', 'Commande Statue  a été modfié avec succès.');
@@ -409,7 +437,8 @@ class BackEnd extends Controller
 
     public function update_password()
     {
-        $user = User::where('email' , 'admin')->first();;
+        $user = User::where('email', 'admin')->first();
+        ;
         if (!$user) {
             session()->flash('error', 'Admin user not found.');
             return redirect('/update_password');
@@ -418,7 +447,7 @@ class BackEnd extends Controller
     }
     public function password_up(Request $request)
     {
-        $user = User::where('email' , 'admin')->first();
+        $user = User::where('email', 'admin')->first();
         $password = $request->password;
         $password_confirme = $request->password_confirme;
         if ($password === $password_confirme) {
@@ -428,8 +457,8 @@ class BackEnd extends Controller
                 ]
             );
             session()->flash('success', 'Password Modifié avec succès.');
-        }else{
-            session()->flash('error' , 'Passwords do not match');
+        } else {
+            session()->flash('error', 'Passwords do not match');
         }
         return redirect('/update_password');
     }

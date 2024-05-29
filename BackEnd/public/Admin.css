@@ -357,7 +357,7 @@ table a {
 
 /*Products*/
 .submit {
-    background-color: var(--color-28c76f);
+    background-color: var(--color-1b2850);
     color: white;
     font-size: 14px;
     padding: 10px 24px;
@@ -367,8 +367,7 @@ table a {
 }
 
 .submit:hover {
-    background-color: #027a32;
-
+    background-color: var(--color-232f3e);
 }
 .encoure{
     background-color: var(--color-ff9f43);
@@ -382,7 +381,19 @@ table a {
 .encoure:hover{
     background-color: var(--color-bf4800);
 }
+.delivered{
+    background-color: var(--color-28c76f);
+    color: white;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    border: 0px;
+}
+.delivered:hover{
+    background-color: #027a32;
 
+}
 
 .product-head {
     display: flex;

@@ -29,18 +29,18 @@
                 </h1>
             </div>
             @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @elseif(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @elseif(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="content">
                 <a href="/orders" class="card">
                     <div>
-                        <h4>{{ $orders->count() }}</h4>
+                        <h4>{{ $ordersCount }}</h4>
                         <h5>Orders</h5>
                     </div>
                     <div>
@@ -174,7 +174,8 @@
                                         </td>
                                         <td>{{ $special->datefin }}</td>
                                         <td><span class="price">{{ $special->price }}</span><br>
-                                            <span class="offerPrice">{{ $special->offerPrice }}</span></td>
+                                            <span class="offerPrice">{{ $special->offerPrice }}</span>
+                                        </td>
                                         <td><a href="/product_update/{{ $special->id }}"><i
                                                     class="bi bi-eye-fill"></i>
                                                 Detail</a></td>

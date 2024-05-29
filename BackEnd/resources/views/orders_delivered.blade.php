@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Orders Confirmed</title>
+    <title>Orders Delivered</title>
 </head>
 
 <body>
@@ -26,12 +26,12 @@
         <div class="main p-3">
             <div class="text-center">
                 <h1 class="title-page">
-                    Orders Confirmed
+                    Orders Delivered
                 </h1>
             </div>
             <div class="orders m-5">
                 <div class="d-flex justify-content-between">
-                    <h6 class="title"> Orders Confirmed </h6>
+                    <h6 class="title"> Orders Delivered </h6>
                     <div>
                         <form action="/searchordes" method="POST" class="d-flex">
                             @csrf
@@ -65,12 +65,12 @@
                                     <td>{{ $order->dateCm }}</td>
                                     <td>
                                         @if ($order->statue == 1)
-                                        <span class="statueCm">confirmed</span>
+                                            <span class="statueCm">confirmed</span>
                                         @elseif ($order->statue == 0)
-                                        <span class="statueCm">en coure</span>
+                                            <span class="statueCm">en coure</span>
                                         @else
-                                        <span class="statueCm">Livrée</span>
-                                    @endif
+                                            <span class="statueCm">Livrée</span>
+                                        @endif
                                     </td>
                                     <td>{{ $order->total }}</td>
                                     <td><a href="/order_detail/{{ $order->id }}"><i class="bi bi-eye-fill"></i>

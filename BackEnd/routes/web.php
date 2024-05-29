@@ -14,6 +14,7 @@ Route::get('/categories_add' , [BackEnd::class , 'categories_add']);
 Route::get('/fournisseur' , [BackEnd::class , 'fournisseur']);
 Route::get('/orders', [BackEnd::class , 'orders']);
 Route::get('/orders_confirme' , [BackEnd::class , 'orders_confirme']);
+Route::get('/orders_delivered' , [BackEnd::class , 'orders_delivered']);
 Route::get('/order_detail/{id}', [BackEnd::class , 'order_detail']);
 
 Route::get('/categorie_update/{id}', [BackEnd::class, 'categorie_update']);
@@ -32,6 +33,7 @@ Route::get('/categorie_delete/{id}', [BackEnd::class, 'categorie_delete']);
 Route::get('/fournisseur_delete/{id}' , [BackEnd::class , 'fournisseur_delete']);
 Route::get('/product_delete/{id}/{categorieid}' , [BackEnd::class , 'product_delete']);
 Route::get('/deleteOrder/{id}' , [BackEnd::class , 'deleteOrder']);
+Route::get('/publicite/{id}' , [BackEnd::class , 'publicite']);
 /*update */
 
 Route::post('/categorie_up' , [BackEnd::class , 'categorie_up']);
@@ -39,6 +41,7 @@ Route::post('/fournisseur_up', [BackEnd::class, 'fournisseur_up']);
 Route::post('/product_up' , [BackEnd::class , 'product_up']);
 Route::get('/confirme/{id}' , [BackEnd::class , 'confirme']);
 Route::get('/encoure/{id}' , [BackEnd::class , 'encoure']);
+Route::get('/delivered/{id}' , [BackEnd::class , 'delivered']);
 Route::get('/update_password' , [BackEnd::class , 'update_password']);
 Route::post('/password_up' , [BackEnd::class , 'password_up']);
 /*search*/

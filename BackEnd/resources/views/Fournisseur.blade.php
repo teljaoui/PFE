@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group text-end">
-                                        <button type="submit" class="submit">Ajouter</button>
+                                        <button type="submit" class="delivered">Ajouter</button>
                                         <button type="reset" class="submit  bg-danger">réinitialiser</button>
                                     </div>
                                 </div>

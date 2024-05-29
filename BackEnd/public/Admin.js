@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (status === "en coure") {
       statueCm.style.backgroundColor = "";
     } else if (status === "confirmed") {
+      statueCm.style.backgroundColor = "#1b2850"
+    }else {
       statueCm.style.backgroundColor = "green"
     }
   })

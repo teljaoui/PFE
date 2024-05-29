@@ -63,10 +63,12 @@
                                     <td>{{ $order->adress }}</td>
                                     <td>{{ $order->dateCm }}</td>
                                     <td>
-                                        @if ($order->statue > 0)
+                                        @if ($order->statue == 1)
                                             <span class="statueCm">confirmed</span>
-                                        @else
+                                        @elseif ($order->statue == 0)
                                             <span class="statueCm">en coure</span>
+                                        @else
+                                            <span class="statueCm">Livrée</span>
                                         @endif
                                     </td>
                                     <td>{{ $order->total }}</td>

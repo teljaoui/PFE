@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group text-end">
-                                        <button type="submit" class="submit">Modifier</button>
+                                        <button type="submit" class="delivered">Modifier</button>
                                     </div>
                                 </div>
                             </div>

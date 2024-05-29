@@ -37,8 +37,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="">Product Name</label>
-                                    <input type="text" class="form-control" name="title" value="{{ $product->title }}"
-                                        required>
+                                    <input type="text" class="form-control" name="title"
+                                        value="{{ $product->title }}" required>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -150,7 +150,7 @@
                                 <div class="form-group">
                                     <label for="">Offer Price</label>
                                     <input type="number" name="offerPrice" class="form-control"
-                                        value="{{ $product->offerPrice }}" >
+                                        value="{{ $product->offerPrice }}">
                                     @error('offerPrice')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -160,7 +160,7 @@
                                 <div class="form-group">
                                     <label for="">Offer Percentage</label>
                                     <input type="number" class="form-control" max="99" name="percentage"
-                                        value="{{ $product->percentage }}" >
+                                        value="{{ $product->percentage }}">
                                     @error('percentage')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -187,13 +187,17 @@
                                         <p>Fichier actuel : <img src="{{ asset($product->Adimg) }}" alt="product"
                                                 style="max-width: 100px;"></p>
                                     @endif
-                                    <h6><span class="text-danger">Remarque :</span> L'image doit être à l'échelle [3 : 2]
+                                    <h6><span class="text-danger">Remarque :</span> L'image doit être à l'échelle [3 :
+                                        2]
                                     </h6>
+                                    @if ($product->Adimg)
+                                    <a href="/publicite/{{$product->id}}" class="btn btn-danger">Supprimer Publicité</a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group text-end">
-                                    <button type="submit" class="submit">Modifer</button>
+                                    <button type="submit" class="delivered">Modifer</button>
                                 </div>
                             </div>
                         </div>

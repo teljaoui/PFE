@@ -60,7 +60,7 @@ const SpecialProduct = ({Products}) => {
                 ProductQuantity: ProductQuantity
             }));
             toast.success("The product has been added to the shopping cart successfully", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -70,7 +70,7 @@ const SpecialProduct = ({Products}) => {
             });
         } else {
             toast.error("The product is already in the shopping cart", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,

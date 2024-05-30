@@ -78,7 +78,7 @@ const SingleProduct = ({ Products }) => {
                 ProductQuantity: ProductQuantity
             }));
             toast.success("The product has been added to the shopping cart successfully", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -88,7 +88,7 @@ const SingleProduct = ({ Products }) => {
             });
         } else {
             toast.error("The product is already in the shopping cart", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -110,7 +110,7 @@ const SingleProduct = ({ Products }) => {
                 ProductQuantity: ProductQuantity
             }));
             toast.success("The product has been added to the shopping cart successfully", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -120,7 +120,7 @@ const SingleProduct = ({ Products }) => {
             });
         } else {
             toast.error("The product is already in the shopping cart", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -143,7 +143,7 @@ const SingleProduct = ({ Products }) => {
                 ProductPrice: Product.price,
             }));
             toast.success("The product has been added to the wishlist successfully", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -153,7 +153,7 @@ const SingleProduct = ({ Products }) => {
             });
         } else {
             toast.error("The product is already in the wishlist", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -252,10 +252,12 @@ const SingleProduct = ({ Products }) => {
                                         <h6 className="product-heading">Shipping : </h6>
                                         <p className="product-data text-success">Free shipping</p>
                                     </div>
-                                    <div className="d-flex align-items-center gap-10 my-4">
-                                        <p className="product-heading">Quantity :</p>
+                                    <div className="d-flex align-items-center gap-10 my-4 singalerespo">
                                         <div className="gap-10 d-flex align-items-center">
+                                            <p className="product-heading">Quantity :</p>
                                             <input type="number" name="" id="" min={1} value={ProductQuantity} onChange={(e) => setProductQuantity(e.target.value)} className="form-control me-4" />
+                                        </div>
+                                        <div className="gap-10 d-flex align-items-center">
                                             <button className="button" onClick={() => { handleClick(Product); }}>ADD TO CART</button>
                                             <ToastContainer className="notif" />
                                             <button className="buttonbg" onClick={() => { checkout(Product) }}>Buy It Now</button>

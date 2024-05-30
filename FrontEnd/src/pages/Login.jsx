@@ -9,17 +9,17 @@ export default function Login() {
     const [password, setPassword] = useState();
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
-    
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             navigate('/dashboard');
-        }else{
+        } else {
             navigate('/login');
         }
     }, [navigate]);
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -47,6 +47,12 @@ export default function Login() {
             }
         }
     };
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
     return (
         <>
             <Meta title={"Login"} />

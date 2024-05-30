@@ -39,7 +39,7 @@ export default function Wishlist() {
                             </div>
                         ) : (
                             wishlist.map((product) => (
-                                <div className="col-2 " key={product.id}>
+                                <div className="col-2 py-2" key={product.id}>
                                     <div className="wishlist-card position-relative text-center">
                                         <img
                                             src="/images/cross.svg"

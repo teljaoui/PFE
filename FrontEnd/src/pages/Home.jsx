@@ -63,7 +63,7 @@ export const Home = ({Products , Categories}) => {
                 }
               </Slider>
             </div>
-            <div className="col-6">
+            <div className="col-6 Best">
               <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center ">
                 <Link to="/store" className="small-banner position-relative">
                   <img src="images/catbanner-01.jpg" alt="" className="img-fluid rounded-3" />
@@ -139,8 +139,6 @@ export const Home = ({Products , Categories}) => {
                     <p className="mb-0 fw-light">100% Protected Payments</p>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>

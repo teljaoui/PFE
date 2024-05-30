@@ -7,20 +7,20 @@ import { BsLinkedin } from "react-icons/bs";
 import ScrollToTopButton from './ScrollToTopButton ';
 import { AiFillHome } from 'react-icons/ai';
 
-export const Footer = ({Categories}) => {
+export const Footer = ({Categories , user}) => {
   return (
     <>
       <ScrollToTopButton />
       <footer className="py-4">
         <div className="container-xxl">
           <div className="row align-items-center">
-            <div className="col-6">
+            <div className="col-6 response">
               <div className="footer-top-data d-flex gap-30 align-items-center">
                 <img src="/images/newsletter.png" alt="newsletter" width={22} />
                 <h3 className="mb-0 text-white fs-5">Sign Up for Newsletter</h3>
               </div>
             </div>
-            <div className="col-5">
+            <div className="col-5 response">
               <div class="input-group">
                 <input
                   className="form-control py-1"
@@ -37,7 +37,7 @@ export const Footer = ({Categories}) => {
       </footer>
       <footer className="py-4">
         <div className="container-xxl">
-          <div className="row">
+          <div className="row responseContent">
             <div className="col-3">
               <h6 className="text-white mb-4">Contact Us</h6>
               <div className="py-2">
@@ -67,7 +67,9 @@ export const Footer = ({Categories}) => {
             <div className="col-3">
               <h6 className="text-white mb-4">Account</h6>
               <div className="footer-link d-flex flex-column">
-                <Link to="/login" className="text-white py-2 mb-1">Login in My Account</Link>
+           
+                <Link to="/login" className="text-white py-2 mb-1"> {user ? "Visite Dashboard" :  "Login in My Account "  }</Link>
+                
                 <Link to="/wishlist" className="text-white py-2 mb-1">Favorite Wishlist</Link>
                 <Link to="/contact" className="text-white py-2 mb-1">Contact</Link>
               </div>

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { searchAction } from '../config/Action';
-import axios from 'axios';
 
 
-export const Header = ({Categories}) => {
+export const Header = ({ Categories, user }) => {
   const location = useLocation()
-  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
 
   const carts = useSelector((state) => state.carts);
@@ -27,23 +25,6 @@ export const Header = ({Categories}) => {
     )
     )
   }
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/user', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.log('error')
-      }
-    };
-
-    fetchUserData();
-  }, [])
   return (
     <>
       <header className="header-top-strip py-2">
@@ -67,7 +48,7 @@ export const Header = ({Categories}) => {
       </header>
       <header className="header-upper py-3">
         <div className="container-xxl">
-          <div className="row align-items-center">
+          <div className="row d-flex align-items-center">
             <div className="col-2">
               <h2>
                 <Link to="/" className="logo">tim tech</Link>
@@ -124,41 +105,39 @@ export const Header = ({Categories}) => {
             </div>
           </div>
         </div>
-      </header >
+      </header>
       <header className="header-bottom py-1">
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
               <div className="menu-bottom d-flex align-items-center gap-30">
-                <div>
-                  <div class="dropdown">
-                    <button
-                      className="btn btn-secondary dropdown-toggle bg-transparent border-0 gap-15 d-flex  align-items-center"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <img src="/images/menu.svg" alt="" />
-                      <span className="me-5 d-inline-block">Shop Categories</span>
-                    </button>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      {
-                        Categories.map(
-                          (categorie => (
-                            <li key={categorie.id}>
-                              <Link to={`/store/${categorie.title}`} className="dropdown-item text-white">
-                                {categorie.title.replace(/_/g, " ")}
-                              </Link>
-                            </li>
-                          ))
-                        )
-                      }
-                    </ul>
-                  </div>
+                <div class="dropdown">
+                  <button
+                    className="btn btn-secondary dropdown-toggle bg-transparent border-0 gap-15 d-flex  align-items-center"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img src="/images/menu.svg" alt="" />
+                    <span className="me-5 d-inline-block">Shop Categories</span>
+                  </button>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    {
+                      Categories.map(
+                        (categorie => (
+                          <li key={categorie.id}>
+                            <Link to={`/store/${categorie.title}`} className="dropdown-item text-white">
+                              {categorie.title.replace(/_/g, " ")}
+                            </Link>
+                          </li>
+                        ))
+                      )
+                    }
+                  </ul>
                 </div>
                 <div className="menu-links">
                   <div className="d-flex align-items-center gap-15">

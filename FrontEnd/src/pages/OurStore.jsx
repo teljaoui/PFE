@@ -54,7 +54,7 @@ export default function OurStore({ Products, Categories }) {
             <div className="store-wrapper py-5 home-wrapper-2">
                 <div className="container-xxl">
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-3 filter">
                             <div className="filter-card mb-3">
                                 <h3 className="filter-title">
                                     Shop By Categories

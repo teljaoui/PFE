@@ -155,7 +155,6 @@ const Dashboard = () => {
                                             <div className="userinfo">
                                                 <h3>Welcome, <span> {user.name} {user.lastName}</span></h3>
                                             </div>
-
                                         </div>
                                         <div className="user-detail py-4">
                                             <ul>

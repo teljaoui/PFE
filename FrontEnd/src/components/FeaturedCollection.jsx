@@ -48,7 +48,7 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                 ProductQuantity: ProductQuantity
             }));
             toast.success("The product has been added to the shopping cart successfully", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -58,7 +58,7 @@ export default function FeaturedCollection({ currentProductId, Products }) {
             });
         } else {
             toast.error("The product is already in the shopping cart", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -80,7 +80,7 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                 ProductQuantity: ProductQuantity
             }));
             toast.success("The product has been added to the wishlist successfully", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -90,7 +90,7 @@ export default function FeaturedCollection({ currentProductId, Products }) {
             });
         } else {
             toast.error("The product is already in the wishlist", {
-                position: "bottom-right",
+                position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -122,7 +122,7 @@ export default function FeaturedCollection({ currentProductId, Products }) {
         slidesToShow: 6,
         slidesToScroll: 1,
         initialSlide: 0,
-        nextArrow: <NextArrow />,
+        nextArrow: currentSlide !== Products.length - 6 ? <NextArrow /> : null,
         prevArrow: currentSlide !== 0 ? <PrevArrow /> : null,
         beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
         responsive: [
@@ -130,9 +130,11 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 1,
+                    initialSlide:1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    nextArrow:null,
+                    prevArrow:null,
                 }
             },
             {
@@ -141,7 +143,9 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    nextArrow:null,
+                    prevArrow:null,
                 }
             },
             {
@@ -149,7 +153,8 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    initialSlide: 2
+                    nextArrow:null,
+                    prevArrow:null,
                 }
             },
             {
@@ -157,6 +162,9 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
+                    nextArrow:null,
+                    prevArrow:null,
+                    
                 }
             }
         ]
@@ -181,7 +189,7 @@ export default function FeaturedCollection({ currentProductId, Products }) {
 
                         return (
                             <div className="col-2">
-                                <Link to={`/product/${product.id}`} className="product-card position-relative m-2 py-4" onClick={scroll}>
+                                <Link to={`/product/${product.id}`} className="product-card position-relative m-2 py-4" key={product.id} onClick={scroll}>
                                     {isOfferValid && (
                                         <p className="percentage">-{product.percentage}%</p>
                                     )}

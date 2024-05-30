@@ -16,6 +16,8 @@ export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Pro
     const cartItems = useSelector(state => state.carts);
     const [ProductQuantity, setProductQuantity] = useState(1);
     const wishlistItems = useSelector(state => state.wishlist);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
     const handleClick = (product) => {
         const isProductInCart = cartItems.some(item => item.id === product.id);
         if (!isProductInCart) {
@@ -139,7 +141,7 @@ export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Pro
                                         activeColor="#ffd700"
                                     />
                                     {(clickedButton === 12 || clickedButton === 6) && (
-                                        <p className="description fw-light fs-6">{product.description.substring(0, 150) + "..."}</p>
+                                        <p className="description fw-light fs-6">{product.description.substring(0, isMobile ? 30 : 150) + "..."}</p>
                                     )}
                                     <p className="price">
                                         {isOfferValid ? (

@@ -1376,10 +1376,6 @@ span.statue {
     margin-inline: auto;
   }
 
-  .special-product-content {
-    display: block;
-  }
-
   .special-product-content .discount-till {
     display: block !important;
   }
@@ -1526,8 +1522,9 @@ span.statue {
     width: 50%;
   }
 
+
   .gr-12 .product-card .product-image {
-    width: 100%;
+    width: 30%;
   }
 
   .contact-inner-wrapper {

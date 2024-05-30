@@ -42,7 +42,6 @@ export default function Checkout() {
                 navigate('/login');
             }
         };
-
         fetchUserData();
     }, [])
 

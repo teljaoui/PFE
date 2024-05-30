@@ -134,8 +134,8 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                     initialSlide: 0,
                     infinite: true,
                     dots: true,
-                    nextArrow: <NextArrow />,
-                    prevArrow: <PrevArrow />,
+                    nextArrow: null,
+                    prevArrow: null,
                 }
             },
             {
@@ -146,8 +146,8 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                     initialSlide: 0,
                     infinite: true,
                     dots: true,
-                    nextArrow: <NextArrow />,
-                    prevArrow: <PrevArrow />,
+                    nextArrow: null,
+                    prevArrow: null,
                 }
             },
             {
@@ -156,8 +156,8 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     initialSlide: 0,
-                    nextArrow: <NextArrow />,
-                    prevArrow: <PrevArrow />,
+                    nextArrow: null,
+                    prevArrow: null,
                 }
             },
             {
@@ -166,8 +166,8 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     initialSlide: 0,
-                    nextArrow: <NextArrow />,
-                    prevArrow: <PrevArrow />,
+                    nextArrow: null,
+                    prevArrow: null,
                 }
             }
         ]

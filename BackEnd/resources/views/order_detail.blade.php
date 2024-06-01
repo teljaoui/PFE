@@ -71,7 +71,7 @@
                                 <p>{{ $order->suiteAderess }}</p>
                             </li>
                             <li><span>Total Commande :</span>
-                                <p>$ {{ $order->total }}</p>
+                                <p>{{ $order->total }} Dhs</p>
                             </li>
                             <li>
                                 <span>Commande Statue : </span>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="Total">
                         <span>Total :</span>
-                        <p>$ {{ $order->total }}</p>
+                        <p>{{ $order->total }} Dhs</p>
                     </div>
 
                 </div>

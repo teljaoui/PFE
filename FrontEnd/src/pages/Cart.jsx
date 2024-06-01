@@ -24,7 +24,7 @@ export default function Cart() {
     const [total, setTotal] = useState(0);
 
     const handleDelete = (id) => {
-        if (window.confirm('Are you sure you want to delete this product?')) {
+        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce produit?')) {
             dispatch(deleteCartAction(id));
         }
     };

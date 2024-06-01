@@ -12,11 +12,11 @@ export const Header = ({ Categories, user }) => {
   const carts = useSelector((state) => state.carts);
 
   const calculateTotal = () => {
-    let totalPrice = 0;
+    let total = 0;
     carts.forEach((product) => {
-      totalPrice += product.ProductQuantity * product.ProductPrice;
+      total += 1;
     });
-    return totalPrice;
+    return total;
   };
 
   const handelSearch = (search) => {
@@ -32,7 +32,7 @@ export const Header = ({ Categories, user }) => {
           <div className="row">
             <div className="col-6 d-start">
               <p className=" text-white mb-0">
-                Free Shipping  & Freee Returns
+                Livraison et retours gratuits
               </p>
             </div>
             <div className="col-6 d-end">
@@ -59,7 +59,7 @@ export const Header = ({ Categories, user }) => {
                 <input
                   className="form-control py-2"
                   type="text"
-                  placeholder="Search Prodcut Here..."
+                  placeholder="Rechercher un produit ici..."
                   onChange={(e) => handelSearch(e.target.value)}
                 />
 
@@ -153,7 +153,7 @@ export const Header = ({ Categories, user }) => {
                     }
                     {
                       location.pathname === "/" && (
-                        <a href="#special">Special Product</a>
+                        <a href="#special">Special Products</a>
 
                       )
                     }

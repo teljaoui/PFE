@@ -57,13 +57,6 @@ export default function Wishlist() {
                                                 {product.ProductTitle.length > 20 ? product.ProductTitle.substring(0, 20) + '...' : product.ProductTitle}
                                             </h5>
                                             <h6 className="price text-start">{product.ProductPrice} Dhs</h6>
-                                            <ReactStars
-                                                count={5}
-                                                size={17}
-                                                value={product.ProductReview}
-                                                edit={false}
-                                                activeColor="#ffd700"
-                                            />
                                         </div>
                                     </div>
                                 </div>

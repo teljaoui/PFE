@@ -82,7 +82,7 @@ const SingleProduct = ({ Products }) => {
                 ProductPrice: Product.price,
                 ProductQuantity: ProductQuantity
             }));
-            toast.success("The product has been added to the shopping cart successfully", {
+            toast.success("Le produit a été ajouté au panier avec succès", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -92,7 +92,7 @@ const SingleProduct = ({ Products }) => {
                 progress: undefined,
             });
         } else {
-            toast.error("The product is already in the shopping cart", {
+            toast.error("Le produit est déjà dans le panier", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -114,7 +114,7 @@ const SingleProduct = ({ Products }) => {
                 ProductPrice: Product.price,
                 ProductQuantity: ProductQuantity
             }));
-            toast.success("The product has been added to the shopping cart successfully", {
+            toast.success("Le produit a été ajouté au panier avec succès", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -124,7 +124,7 @@ const SingleProduct = ({ Products }) => {
                 progress: undefined,
             });
         } else {
-            toast.error("The product is already in the shopping cart", {
+            toast.error("Le produit est déjà dans le panier", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -147,7 +147,7 @@ const SingleProduct = ({ Products }) => {
                 ProductReview: Product.review,
                 ProductPrice: Product.price,
             }));
-            toast.success("The product has been added to the wishlist successfully", {
+            toast.success("Le produit a été ajouté à la liste de souhaits avec succès", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -157,7 +157,7 @@ const SingleProduct = ({ Products }) => {
                 progress: undefined,
             });
         } else {
-            toast.error("The product is already in the wishlist", {
+            toast.error("Le produit est déjà dans la liste de souhaits", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -199,7 +199,7 @@ const SingleProduct = ({ Products }) => {
                 setShowReviewForm(false);
                 toast.success("Review created successfully.", {
                     position: "top-left",
-                    autoClose: 1000,
+                    autoClose: 500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

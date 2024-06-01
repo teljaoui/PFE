@@ -52,9 +52,9 @@ export const Home = ({Products , Categories}) => {
                       <div className="main-banner position-relative" key={product.id}>
                         <img src={`http://127.0.0.1:8000/${product.Adimg}`} alt="" className="img-fluid rounded-3" />
                         <div className="main-banner-content position-absolute">
-                          <h4>SUPERCHARGED FOR PROS.</h4>
+                          <h4>SURALIMENTÉ POUR LES PROS.</h4>
                           <h5>{product.title.length > 15 ? product.title.substring(0, 15) + '...' : product.title}</h5>
-                          <p>From {product.price} Dhs</p>
+                          <p>Depuis {product.price} Dhs</p>
                           <Link to={`/product/${product.id}`} className="button">BUY NOW</Link>
                         </div>
                       </div>
@@ -68,29 +68,29 @@ export const Home = ({Products , Categories}) => {
                 <Link to="/store" className="small-banner position-relative">
                   <img src="images/catbanner-01.jpg" alt="" className="img-fluid rounded-3" />
                   <div className="small-banner-content position-absolute">
-                    <h4>Best sale</h4>
-                    <p>Shop now</p>
+                    <h4>Meilleure vente</h4>
+                    <p>Achetez maintenant</p>
                   </div>
                 </Link>
                 <Link to="/store" className="small-banner position-relative">
                   <img src="images/catbanner-02.jpg" alt="" className="img-fluid rounded-3" />
                   <div className="small-banner-content position-absolute">
-                    <h4>New arrival</h4>
-                    <p>Find out now</p>
+                    <h4>Nouvelle arrivee</h4>
+                    <p>Découvrez maintenant</p>
                   </div>
                 </Link>
                 <Link to="/store" className="small-banner position-relative">
                   <img src="images/catbanner-03.jpg" alt="" className="img-fluid rounded-3" />
                   <div className="small-banner-content position-absolute">
                     <h4>15% off</h4>
-                    <p>Shop the last band <br /> styles and colors</p>
+                    <p>Achetez le dernier groupe</p>
                   </div>
                 </Link>
                 <Link to="/store" className="small-banner position-relative">
                   <img src="images/catbanner-04.jpg" alt="" className="img-fluid rounded-3" />
                   <div className="small-banner-content position-absolute">
-                    <h4>free engraving</h4>
-                    <p>High-fidelity playback <br /> ultra-low distortion</p>
+                    <h4>gravure gratuite</h4>
+                    <p>Lecture haute fidélité<br /> distorsion ultra faible</p>
                   </div>
                 </Link>
               </div>
@@ -107,36 +107,36 @@ export const Home = ({Products , Categories}) => {
                 <div className="d-flex align-items-center gap-15">
                   <img src="images/service.png" alt="" />
                   <div>
-                    <h6>Free Shipping</h6>
-                    <p className="mb-0 fw-light">From all orders</p>
+                    <h6>Livraison gratuite</h6>
+                    <p className="mb-0 fw-light">De toutes les commandes</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
                   <img src="images/service-02.png" alt="" />
                   <div>
-                    <h6>Daily Suprise Offers</h6>
-                    <p className="mb-0 fw-light">Save upto 25% off</p>
+                    <h6>Offres surprises quotidiennes</h6>
+                    <p className="mb-0 fw-light">économisez jusqu'à 25 % de réduction</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
                   <img src="images/service-03.png" alt="" />
                   <div>
-                    <h6>Support 24/7</h6>
-                    <p className="mb-0 fw-light">Shop whith an expert</p>
+                    <h6>Assistance 24h/24 et 7j/7</h6>
+                    <p className="mb-0 fw-light">Achetez avec un expert</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
                   <img src="images/service-04.png" alt="" />
                   <div>
-                    <h6>Afforadable Prices</h6>
-                    <p className="mb-0 fw-light">Get Factory Default Price</p>
+                    <h6>Prix ​​abordables</h6>
+                    <p className="mb-0 fw-light">Obtenir le prix d'usine par défaut</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
                   <img src="images/service-05.png" alt="" />
                   <div>
-                    <h6>Secure Payments</h6>
-                    <p className="mb-0 fw-light">100% Protected Payments</p>
+                    <h6>Paiements sécurisés</h6>
+                    <p className="mb-0 fw-light">Paiements 100% protégés</p>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export const Home = ({Products , Categories}) => {
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
-              <h3 className="section-heading">Special Product</h3>
+              <h3 className="section-heading">Special Products</h3>
             </div>
           </div>
           <div className="row">

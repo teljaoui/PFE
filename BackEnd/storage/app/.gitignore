@@ -1,3 +1,8 @@
-*
+# Ignore all files and folders except public/
+/*
+
+# Keep public/ folder
 !public/
+
+# Keep .gitignore file
 !.gitignore

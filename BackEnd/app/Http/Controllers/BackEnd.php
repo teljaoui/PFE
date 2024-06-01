@@ -239,6 +239,7 @@ class BackEnd extends Controller
                 'price' => $request->get('price'),
                 'brand' => $request->get('brand'),
                 'quantities' => $request->get('quantities'),
+                'review' => 4,
                 'categorie_id' => $request->get('categorie_id'),
                 'fournisseur_id' => $request->get('fournisseur_id')
             ];
@@ -289,6 +290,7 @@ class BackEnd extends Controller
                 'price' => $request->get('price'),
                 'brand' => $request->get('brand'),
                 'quantities' => $request->get('quantities'),
+                'review' => 4,
                 'categorie_id' => $request->get('categorie_id'),
                 'fournisseur_id' => $request->get('fournisseur_id')
             ];

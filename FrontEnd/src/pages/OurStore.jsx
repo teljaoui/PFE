@@ -120,8 +120,8 @@ export default function OurStore({ Products, Categories }) {
                                                         <p className="price">
                                                             {isOfferValid ? (
                                                                 <span>
-                                                                    <span className="text-danger">${product.offerPrice}</span> &nbsp;
-                                                                    <strike>$ {product.price}</strike>
+                                                                    <span className="text-danger">{product.offerPrice} Dhs</span> &nbsp;
+                                                                    <strike>{product.price} Dhs</strike>
                                                                 </span>
                                                             ) : (
                                                                 `$ ${product.price}`

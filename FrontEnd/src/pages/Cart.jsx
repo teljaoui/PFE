@@ -79,7 +79,7 @@ export default function Cart() {
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <span>${product.ProductPrice}</span>
+                                                    <span>{product.ProductPrice} Dhs</span>
                                                 </td>
                                                 <td>
                                                     <input
@@ -93,7 +93,7 @@ export default function Cart() {
                                                     />
                                                 </td>
                                                 <td className="d-flex gap-10">
-                                                    <span>$ {product.ProductQuantity * product.ProductPrice}</span>
+                                                    <span>{product.ProductQuantity * product.ProductPrice} Dhs</span>
                                                 </td>
                                                 <td>
                                                     <RiDeleteBin5Fill className="delete-icon" onClick={() => handleDelete(product.id)} />
@@ -110,7 +110,7 @@ export default function Cart() {
                                     <Link to="/store" className="buttonbg">Continue Shopping</Link>
                                 </div>
                                 <div className=" d-flex flex-column justify-content-between">
-                                    <p className="subtotal">Subtotal &nbsp;&nbsp;&nbsp; <span> $ {calculateTotal()}</span></p>
+                                    <p className="subtotal">Subtotal &nbsp;&nbsp;&nbsp; <span>{calculateTotal()} Dhs</span></p>
                                     <Link to="/checkout" className="button text-center">Check Out</Link>
                                 </div>
                             </div>

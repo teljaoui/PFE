@@ -16,3 +16,4 @@ Route::get('/dashboard', [AuthController::class, 'userInfo'])->middleware('auth:
 Route::get('/user/{userId}/orders', [AuthController::class, 'getUserOrders']);
 Route::middleware('auth:sanctum')->put('/user/password', [AuthController::class, 'updatePassword']);
 Route::post('/orders', [ApiController::class, 'store']);
+Route::post('/storeReview' , [ApiController::class , 'storeReview']);

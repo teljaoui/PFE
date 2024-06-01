@@ -6,16 +6,20 @@ use App\Models\Categorie;
 use App\Models\Order;
 use App\Models\Order_detail;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categorie = Categorie::all();
-        $product = Product::with('categorie')->get();
+        $review = Review::all();
+        $product = Product::with(['categorie', 'reviews'])->get();
         return response()->json($product);
     }
-    public function categories(){
+    public function categories()
+    {
         $categorie = Categorie::all();
         return response()->json($categorie);
     }
@@ -54,6 +58,29 @@ class ApiController extends Controller
             return response()->json(['message' => 'Order created successfully'], 201);
         } catch (\Exception $e) {
             \Log::error('Error creating order: ' . $e->getMessage());
+            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
+        }
+    }
+    public function storeReview(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => 'required',
+                'review' => 'required',
+                'content' => 'required',
+                'product_id' => 'required'
+            ]);
+            Review::create(
+                [
+                    'email' => $request->email,
+                    'review' => $request->review,
+                    'content' => $request->content,
+                    'product_id' => $request->product_id
+                ]
+            );
+            return response()->json(['message' => 'Review created successfully'], 201);
+        } catch (\Exception $e) {
+            \Log::error('Error creating Review: ' . $e->getMessage());
             return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
         }
     }

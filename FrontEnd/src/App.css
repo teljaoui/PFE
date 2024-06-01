@@ -839,7 +839,9 @@ footer .payment img {
 .review-form {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
+.review img{
+  margin-right: 5px;
+}
 .review h6 {
   margin: 2px;
   margin-right: 11px;
@@ -1622,6 +1624,13 @@ span.statue {
   }
   .finale img{
     width: 100px;
+  }
+  .review p{
+    width: 80% !important;
+  }
+  .review .d-flex{
+    display: flex;
+    flex-wrap: wrap !important;
   }
 }
 

@@ -190,7 +190,13 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                     {Product.map((product => {
                         const isOfferExpired = new Date(product.datefin) > new Date();
                         const isOfferValid = product.offer && isOfferExpired;
-
+                        const averageRating = () => {
+                            if (!product.reviews || product.reviews.length === 0) {
+                                return 0;
+                            }
+                            const total = product.reviews.reduce((acc, review) => acc + review.review, 0);
+                            return (total / product.reviews.length).toFixed(1);
+                        };
                         return (
                             <div className="col-2">
                                 <Link to={`/product/${product.id}`} className="product-card position-relative m-2 py-4" key={product.id} onClick={scroll}>
@@ -208,18 +214,18 @@ export default function FeaturedCollection({ currentProductId, Products }) {
                                         <ReactStars
                                             count={5}
                                             size={17}
-                                            value={product.review}
+                                            value={parseFloat(averageRating())} 
                                             edit={false}
                                             activeColor="#ffd700"
                                         />
                                         <p className="price">
                                             {isOfferValid ? (
                                                 <span>
-                                                    <span className="text-danger">${product.offerPrice}</span> &nbsp;
-                                                    <strike>$ {product.price}</strike>
+                                                    <span className="text-danger">{product.offerPrice} Dhs</span> &nbsp;
+                                                    <strike>{product.price} Dhs</strike>
                                                 </span>
                                             ) : (
-                                                `$ ${product.price}`
+                                                `${product.price} Dhs`
                                             )}
                                         </p>
                                     </div>

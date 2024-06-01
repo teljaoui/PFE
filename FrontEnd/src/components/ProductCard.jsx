@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from 'react-router-dom';
 import { BsCartPlusFill } from "react-icons/bs";
@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Products}) => {
+export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom, Products }) => {
     const location = useLocation()
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.carts);
@@ -28,7 +28,7 @@ export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Pro
                 ProductPrice: product.price,
                 ProductQuantity: ProductQuantity
             }));
-            toast.success("The product has been added to the shopping cart successfully", { 
+            toast.success("The product has been added to the shopping cart successfully", {
                 position: "top-left",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -116,7 +116,13 @@ export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Pro
                 slicedisplayedProducts.map((product => {
                     const isOfferExpired = new Date(product.datefin) > new Date();
                     const isOfferValid = product.offer && isOfferExpired;
-
+                    const averageRating = () => {
+                        if (!product.reviews || product.reviews.length === 0) {
+                            return 0;
+                        }
+                        const total = product.reviews.reduce((acc, review) => acc + review.review, 0);
+                        return (total / product.reviews.length).toFixed(1);
+                    };
 
                     return (
 
@@ -133,10 +139,11 @@ export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Pro
                                     <h5 className="product-title">
                                         {product.title.length > 20 ? product.title.substring(0, 20) + '...' : product.title}
                                     </h5>
+
                                     <ReactStars
                                         count={5}
                                         size={17}
-                                        value={product.review}
+                                        value={parseFloat(averageRating())} 
                                         edit={false}
                                         activeColor="#ffd700"
                                     />
@@ -146,11 +153,11 @@ export const ProductCard = ({ clickedButton, categorie, priceTo, priceFrom , Pro
                                     <p className="price">
                                         {isOfferValid ? (
                                             <span>
-                                                <span className="text-danger">${product.offerPrice}</span> &nbsp;
-                                                <strike>$ {product.price}</strike>
+                                                <span className="text-danger">{product.offerPrice} Dhs</span> &nbsp;
+                                                <strike>{product.price} Dhs</strike>
                                             </span>
                                         ) : (
-                                            `$ ${product.price}`
+                                            `${product.price} Dhs`
                                         )}
                                     </p>
                                 </div>

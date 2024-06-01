@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import FeaturedCollection from '../components/FeaturedCollection';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import axios from 'axios';
 
 const SingleProduct = ({ Products }) => {
     const { id } = useParams();
@@ -24,6 +25,10 @@ const SingleProduct = ({ Products }) => {
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [currentProductId, setCurrentProductId] = useState(Product ? Product.id : null);
+    const [reviews, setReviews] = useState(Product ? Product.reviews : []);
+    const [email, setEmail] = useState('');
+    const [reviewform, setReviewform] = useState(0);
+    const [content, setContent] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -167,6 +172,52 @@ const SingleProduct = ({ Products }) => {
     const toggleReviewForm = () => {
         setShowReviewForm(!showReviewForm);
     };
+    const calculateAverageReview = () => {
+        if (reviews.length === 0) {
+            return 0;
+        }
+        const total = reviews.reduce((acc, review) => acc + review.review, 0);
+        return (total / reviews.length).toFixed(1);
+    };
+    useEffect(() => {
+        setReviews(Product ? Product.reviews : []);
+    }, [Product]);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/storeReview', {
+                email: email,
+                review: reviewform,
+                content: content,
+                product_id: Product.id
+            });
+            if (response.status === 201) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                setShowReviewForm(false);
+                toast.success("Review created successfully.", {
+                    position: "top-left",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    onClose: () => window.location.reload()
+                });
+            } else {
+                throw new Error('Failed to create review. Please try again.');
+            }
+        } catch (error) {
+            if (error.response) {
+                console.error('Error:', error.response.data);
+            } else {
+                console.error('Error:', error.message);
+            }
+        }
+    };
 
     if (!Product) {
         return <div class="loader"></div>;
@@ -206,8 +257,8 @@ const SingleProduct = ({ Products }) => {
                                         <div>
                                             <p className="price mt-2">
                                                 <span>
-                                                    <span className="text-danger">${Product.offerPrice}</span> &nbsp;
-                                                    <strike>${Product.price}</strike>
+                                                    <span className="text-danger">{Product.offerPrice} Dhs</span> &nbsp;
+                                                    <strike>{Product.price} Dhs</strike>
                                                 </span>
                                             </p>
 
@@ -223,17 +274,17 @@ const SingleProduct = ({ Products }) => {
                                             </div>
                                         </div>
                                     ) : (
-                                        <p className="price mt-2">  ${Product.price} </p>
+                                        <p className="price mt-2">{Product.price} Dhs</p>
                                     )}
                                     <div className="d-flex align-items-center gap-10">
                                         <ReactStars
                                             count={5}
                                             size={18}
-                                            value={Product.review}
+                                            value={parseFloat(calculateAverageReview())}
                                             edit={false}
                                             activeColor="#ffd700"
                                         />
-                                        <p className="mb-0">( 2 Review )</p>
+                                        <p className="mb-0">( {Product.reviews.length} Review )</p>
                                     </div>
                                     <div>
                                         <a className="text-dark text-decoration-underline" href="#review-form" onClick={toggleReviewForm}>Write a Review</a>
@@ -324,11 +375,11 @@ const SingleProduct = ({ Products }) => {
                                             <ReactStars
                                                 count={5}
                                                 size={17}
-                                                value={4}
+                                                value={parseFloat(calculateAverageReview())}
                                                 edit={false}
                                                 activeColor="#ffd700"
                                             />
-                                            <p className="mb-0">Based on 2 Review</p>
+                                            <p className="mb-0">Based on {Product.reviews.length} Review</p>
                                         </div>
                                     </div>
                                     {!showReviewForm && (
@@ -340,24 +391,22 @@ const SingleProduct = ({ Products }) => {
                                 {showReviewForm && (
                                     <div className="review-form py-4" id="review-form">
                                         <h6 className="mb-2 fw-light">write a Review</h6>
-                                        <form action="" className="d-flex flex-column gap-15">
+                                        <form onSubmit={handleSubmit} className="d-flex flex-column gap-15">
                                             <div>
-                                                <input type="text" className="form-control" placeholder="Name" required />
-                                            </div>
-                                            <div>
-                                                <input type="email" className="form-control" placeholder="Email" required />
+                                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Email" required />
                                             </div>
                                             <div>
                                                 <ReactStars
                                                     count={5}
                                                     size={30}
-                                                    value={0}
                                                     edit={true}
                                                     activeColor="#ffd700"
+                                                    value={reviewform}
+                                                    onChange={(newRating) => setReviewform(newRating)}
                                                 />
                                             </div>
                                             <div>
-                                                <textarea name="" id="" className="w-100 form-control" cols="30" rows="4" placeholder="Write your comments here" required></textarea>
+                                                <textarea name="" id="" value={content} onChange={(e) => setContent(e.target.value)} className="w-100 form-control" cols="30" rows="4" placeholder="Write your comments here" required></textarea>
                                             </div>
                                             <div className="d-flex justify-content-end">
                                                 <button type="submit" className="button">Submit Review</button>
@@ -366,19 +415,27 @@ const SingleProduct = ({ Products }) => {
                                     </div>
                                 )}
                                 <div className="reviews py-4">
-                                    <div className="review py-3">
-                                        <div className="d-flex align-items-center">
-                                            <h6>teljaoui2004@gmail.com</h6>
-                                            <ReactStars
-                                                count={5}
-                                                size={17}
-                                                value={4}
-                                                edit={false}
-                                                activeColor="#ffd700"
-                                            />
-                                        </div>
-                                        <p className="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, saepe!</p>
-                                    </div>
+                                    {reviews.length > 0 ? (
+                                        reviews.map((review) => (
+                                            <div className="review py-3" key={review.id}>
+                                                <div className="d-flex align-items-center">
+                                                    <img src={`https://avatar.iran.liara.run/username?username=${review.email}`} width={40} alt="" />
+                                                    <h6 className="ms-3">{review.email}</h6>
+                                                    <ReactStars
+                                                        count={5}
+                                                        size={17}
+                                                        value={review.review}
+                                                        edit={false}
+                                                        activeColor="#ffd700"
+                                                        className="ms-3"
+                                                    />
+                                                </div>
+                                                <p className="p-2">{review.content}</p>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No reviews yet.</p>
+                                    )}
                                 </div>
                             </div>
                         </div>

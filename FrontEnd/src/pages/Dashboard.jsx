@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Meta from '../components/Meta';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SlLogout } from "react-icons/sl";
 import { FaEye } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
@@ -150,7 +150,7 @@ const Dashboard = () => {
                                     <div className="main-product-details">
                                         <div className="d-flex justify-content-around">
                                             <div>
-                                                <img src="https://avatar.iran.liara.run/public/boy" width={100} alt="" />
+                                            <img src={`https://avatar.iran.liara.run/username?username=${user.name}+${user.lastName}`} width={100} alt="" />
                                             </div>
                                             <div className="userinfo">
                                                 <h3>Welcome, <span> {user.name} {user.lastName}</span></h3>
@@ -191,10 +191,12 @@ const Dashboard = () => {
                                                 </div>
                                             </form>
                                         )}
-                                        <span className="logout" onClick={logout}>
-                                            <SlLogout />
-                                            logout
-                                        </span>
+                                        <div className="d-flex justify-content-between">
+                                            <span className="logout" onClick={logout}>
+                                                <SlLogout />
+                                                logout
+                                            </span>
+                                        </div>
                                         <ToastContainer className="notif" />
                                     </div>
                                 </div>

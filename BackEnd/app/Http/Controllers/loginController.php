@@ -17,7 +17,7 @@ class loginController extends Controller
     }
     public function login_post(Request $request)
     {
-        $user = User::where('email', '=', $request->email)->first();
+        $user = User::where('email', '=', "admin")->first();
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {

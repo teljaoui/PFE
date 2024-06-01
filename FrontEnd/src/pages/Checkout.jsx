@@ -166,7 +166,7 @@ export default function Checkout() {
                                                         </p>
                                                     </div>
                                                     <div>
-                                                        <p className="price">$ {product.ProductQuantity * product.ProductPrice}</p>
+                                                        <p className="price">{product.ProductQuantity * product.ProductPrice} Dhs</p>
                                                     </div>
                                                 </div>
 
@@ -178,16 +178,16 @@ export default function Checkout() {
                                 <div className="border-bottom py-4">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <p>Subtotal</p>
-                                        <p className="price">$ {calculateTotal()}</p>
+                                        <p className="price">{calculateTotal()} Dhs</p>
                                     </div>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <p className="mb-0">Shipping</p>
-                                        <p className="price mb-0 text-success">$ 0</p>
+                                        <p className="price mb-0 text-success">0 Dhs</p>
                                     </div>
                                 </div>
                                 <div className="d-flex justify-content-between border-bottom py-4 align-items-center">
                                     <h6>Total</h6>
-                                    <h6>$ {calculateTotal()}</h6>
+                                    <h6>{calculateTotal()} Dhs</h6>
                                 </div>
                             </div>
                         </div>

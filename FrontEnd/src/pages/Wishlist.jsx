@@ -56,7 +56,7 @@ export default function Wishlist() {
                                             <h5 className="title text-start">
                                                 {product.ProductTitle.length > 20 ? product.ProductTitle.substring(0, 20) + '...' : product.ProductTitle}
                                             </h5>
-                                            <h6 className="price text-start">$ {product.ProductPrice}</h6>
+                                            <h6 className="price text-start">{product.ProductPrice} Dhs</h6>
                                             <ReactStars
                                                 count={5}
                                                 size={17}

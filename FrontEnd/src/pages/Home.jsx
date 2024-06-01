@@ -54,7 +54,7 @@ export const Home = ({Products , Categories}) => {
                         <div className="main-banner-content position-absolute">
                           <h4>SUPERCHARGED FOR PROS.</h4>
                           <h5>{product.title.length > 15 ? product.title.substring(0, 15) + '...' : product.title}</h5>
-                          <p>From $ {product.price}</p>
+                          <p>From {product.price} Dhs</p>
                           <Link to={`/product/${product.id}`} className="button">BUY NOW</Link>
                         </div>
                       </div>

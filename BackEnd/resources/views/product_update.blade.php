@@ -29,6 +29,15 @@
                     </h1>
                 </div>
                 <h5 class="mx-5">Modifier Produit</h5>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @elseif(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="add-product">
                     <form action="/product_up" method="post" enctype="multipart/form-data">
                         @csrf
@@ -191,7 +200,8 @@
                                         2]
                                     </h6>
                                     @if ($product->Adimg)
-                                    <a href="/publicite/{{$product->id}}" class="btn btn-danger">Supprimer Publicité</a>
+                                        <a href="/publicite/{{ $product->id }}" class="btn btn-danger">Supprimer
+                                            Publicité</a>
                                     @endif
                                 </div>
                             </div>
@@ -202,6 +212,41 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <h5 class="mx-5 pt-4">liste des commentaire</h5>
+                <div class="add-product">
+                    <div class="table-responsive dataview">
+                        <table class="table datatable ">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Review</th>
+                                    <th>Content</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($reviews as $review)
+                                    <tr>
+                                        <td>{{ $review->id }}</td>
+                                        <td>{{ $review->email }}</td>
+                                        <td>{{ $review->review }}</td>
+                                        <td>{{ $review->content }}</td>
+                                        <td>
+                                            <a href="/review_update/{{ $review->id }}"><i
+                                                    class="fa-solid fa-pen-to-square"></i>
+                                                Update</a>
+                                            <a href="/review_delete/{{ $review->id }}"
+                                                class="text-danger mx-2 delete"><i class="bi bi-trash3 "></i>
+                                                Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 

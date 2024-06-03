@@ -34,6 +34,8 @@ Route::get('/fournisseur_delete/{id}' , [BackEnd::class , 'fournisseur_delete'])
 Route::get('/product_delete/{id}/{categorieid}' , [BackEnd::class , 'product_delete']);
 Route::get('/deleteOrder/{id}' , [BackEnd::class , 'deleteOrder']);
 Route::get('/publicite/{id}' , [BackEnd::class , 'publicite']);
+Route::get('/review_delete/{id}'  , [BackEnd::class , 'review_delete']);
+
 /*update */
 
 Route::post('/categorie_up' , [BackEnd::class , 'categorie_up']);
@@ -44,6 +46,8 @@ Route::get('/encoure/{id}' , [BackEnd::class , 'encoure']);
 Route::get('/delivered/{id}' , [BackEnd::class , 'delivered']);
 Route::get('/update_password' , [BackEnd::class , 'update_password']);
 Route::post('/password_up' , [BackEnd::class , 'password_up']);
+Route::get('/review_update/{id}'  , [BackEnd::class , 'review_update']);
+Route::post('/review_up' , [BackEnd::class , 'review_up']);
 /*search*/
 
 Route::post('/searchproduct' , [BackEnd::class , 'searchproduct']);

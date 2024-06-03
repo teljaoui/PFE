@@ -101,13 +101,12 @@ export const Contact = () => {
                   <h3 className="conatct-title mb-4">Get In Touch With Us</h3>
                   <div>
                     <ul className="ps-0">
-                      <li><Link to="https://www.google.com/maps?ll=34.023098,-6.8404&z=18&t=m&hl=fr&gl=MA&mapclient=embed&cid=7762538454212012576" target="_blank0"><AiFillHome /><span>25F5+6RQ, Rabat</span> </Link></li>
-                      <li><Link to="tel:+212652583234"><BiSolidPhoneCall /><span>+212652583234</span></Link></li>
-                      <li><Link to="mailto:timtech@gmail.com"><MdEmail /><span>timtech@gmail.com</span></Link></li>
-                      <li><Link to=""><BsFacebook /> <span>tim tech</span></Link></li>
-                      <li><Link to=""><BiLogoInstagramAlt /> <span>tim_tech</span></Link></li>
-                      <li><Link to=""><IoLogoWhatsapp /> <span>+212652583234</span></Link></li>
-                      <li><Link to=""><BsTelegram /> <span>tim teck</span></Link></li>
+                      <li><Link to="https://www.google.com/maps?ll=34.023098,-6.8404&z=18&t=m&hl=fr&gl=MA&mapclient=embed&cid=7762538454212012576" target="_blank0"><AiFillHome /><span>Kissariyat Wad Dahb N°8 , Bab Elahd , Rabat</span> </Link></li>
+                      <li><Link to="tel:+212627883606" target="_blank0"><BiSolidPhoneCall /><span>+212627883606</span></Link></li>
+                      <li><Link to="mailto:abderrahim_270@hotmail.com" target="_blank0"><MdEmail /><span>abderrahim_270@hotmail.com</span></Link></li>
+                      <li><Link to="https://www.facebook.com/mariobarkati.co" target="_blank0"><BsFacebook /> <span>tim tech</span></Link></li>
+                      <li><Link to="https://wa.me/message/ESRMW5WZ6BTPI1" target="_blank0"><IoLogoWhatsapp /> <span>+212652583234</span></Link></li>
+                      <li><Link to="" target="_blank0"><BsTelegram /> <span>tim teck</span></Link></li>
                     </ul>
                   </div>
                 </div>

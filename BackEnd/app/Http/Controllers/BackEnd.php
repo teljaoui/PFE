@@ -7,6 +7,7 @@ use App\Models\Fournisseur;
 use App\Models\Order;
 use App\Models\Order_detail;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -45,7 +46,8 @@ class BackEnd extends Controller
         $product = Product::find($id);
         $fournisseurs = Fournisseur::all();
         $categories = Categorie::all();
-        return view('product_update', compact('product', 'categories', 'fournisseurs'));
+        $reviews = Review::where('product_id', $id)->get();
+        return view('product_update', compact('product', 'categories', 'fournisseurs' , 'reviews'));
     }
     public function categories()
     {
@@ -463,6 +465,37 @@ class BackEnd extends Controller
             session()->flash('error', 'Passwords do not match');
         }
         return redirect('/update_password');
+    }
+    public function review_update($id){
+        $review = Review::find($id);
+        return view('review_update' , compact('review'));
+    }
+    public function review_up(Request $request){
+        $review = Review::find($request->id);
+        if ($review) {
+            $review->update(
+                [
+                    'email' => $request->email,
+                    'review' => $request->review,
+                    'content' =>$request->content
+                    
+                ]
+            );
+            session()->flash('success', 'review Modifié avec succès.');
+        } else {
+            session()->flash('error', 'review not Found');
+        }
+        return redirect('/product');
+    }
+    public function review_delete($id){
+        $review = Review::find($id);
+        if($review){
+            $review->delete();
+            session()->flash('success', 'review Supprimé avec succès.');
+        }else{
+            session()->flash('error', 'review not Found');
+        }
+        return redirect('/product');
     }
 
 }

@@ -42,24 +42,18 @@ export const Footer = ({Categories , user}) => {
               <h6 className="text-white mb-4">Contact Us</h6>
               <div className="py-2">
                 <Link to="https://www.google.com/maps?ll=34.023098,-6.8404&z=18&t=m&hl=fr&gl=MA&mapclient=embed&cid=7762538454212012576" className="text-white" target="_blank0"><AiFillHome /><span> 25F5+6RQ, Rabat</span> </Link>
-                <a href="tel:+212652583234" className="mt-4 d-block mb-3 text-white">
-                  Tel: +212652583234
+                <a href="tel:+212627883606" className="mt-4 d-block mb-3 text-white" target="_blank0">
+                  Tel: +212627883606
                 </a>
-                <a href="mailto:timtech@gmail.com" className="mt-4 d-block mb-3 text-white">
-                  Email: timtech@gmail.com
+                <a href="mailto:abderrahim_270@hotmail.com" className="mt-4 d-block mb-3 text-white" target="_blank0">
+                  Email: abderrahim_270@hotmail.com
                 </a>
                 <div className="social_icons d-flex align-items-center gap-15">
-                  <Link to="" className="text-white fs-4">
+                  <Link to="https://www.facebook.com/mariobarkati.co" className="text-white fs-4" target="_blank0">
                     <FaFacebook />
                   </Link>
-                  <Link to="" className="text-white fs-4">
+                  <Link to="https://wa.me/message/ESRMW5WZ6BTPI1" className="text-white fs-4" target="_blank0">
                     <IoLogoWhatsapp />
-                  </Link>
-                  <Link to="" className="text-white fs-4">
-                    <FaInstagram />
-                  </Link>
-                  <Link to="" className="text-white fs-4">
-                    <BsLinkedin />
                   </Link>
                 </div>
               </div>
